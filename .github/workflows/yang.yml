@@ -19,5 +19,5 @@ jobs:
           python-version: 3.9
       - name: Run Python script
         run: |
-          cd yang python code
+          cd Codes
           python ${{ github.event.inputs.file_name }}
