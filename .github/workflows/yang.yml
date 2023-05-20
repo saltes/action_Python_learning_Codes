@@ -1,4 +1,4 @@
-name: Run Python script by file name
+name: Run Python
 
 on:
   workflow_dispatch:
@@ -11,13 +11,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: 检查环境
         uses: actions/checkout@v2
-      - name: Set up Python 3.9
+      - name: 配置Python 3.9
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
-      - name: Run Python script
+      - name: 运行Python代码
         run: |
           cd Codes
           python ${{ github.event.inputs.file_name }}
