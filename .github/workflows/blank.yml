@@ -59,7 +59,20 @@ jobs:
           cd Python-3.9.12/
           # 检查依赖与配置编译
           sudo ./configure --enable-optimizations --with-lto --enable-shared
-      - name: Run python
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          # 编译，-j 后面的数字为参与编译的CPU核心数，根据个人机器配置调整
+          sudo make -j 2
+          # 安装二进制文件
+          sudo make altinstall
+          # 找到 libpython 的位置
+          $ whereis libpython3.9.so.1.0
+          libpython3.9.so.1: /usr/local/lib/libpython3.9.so.1.0
+          # 在 /usr/lib/ 下创建 libpython 的符号链接
+          $ sudo ln -s /usr/local/lib/libpython3.9.so.1.0 /usr/lib/
+          # 在命令行使用 Python 交互式解释器
+          $ python3.9
+          Python 3.9.12 (main, Apr 22 2022, 18:58:57) 
+          [GCC 11.2.0] on linux
+          Type "help", "copyright", "credits" or "license" for more information.
+          >>>${{ github.event.inputs.action_code }}
+#       - name: Run python
+#         run: |
