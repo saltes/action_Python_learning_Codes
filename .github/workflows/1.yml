@@ -1,0 +1,23 @@
+name: Run Python script by file name
+
+on:
+  workflow_dispatch:
+    inputs:
+      file_name:
+        description: 'Enter the file name of the Python script'
+        required: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+      - name: Run Python script
+        run: |
+          cd scripts
+          python ${{ github.event.inputs.file_name }}
