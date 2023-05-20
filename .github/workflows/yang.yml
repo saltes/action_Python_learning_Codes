@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       file_name:
-        description: 'Enter the file name of the Python script'
+        description: 'Enter the file name'
         required: true
 
 jobs:
